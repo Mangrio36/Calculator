@@ -11,6 +11,7 @@ class Claculator {
     this.currentResult = "";
     this.previousResult = "";
     this.operation = undefined;
+    // console.log(typeof this.previousResult);
   }
   // add function to delete one digit
   delete() {
@@ -67,7 +68,13 @@ class Claculator {
   updateDisplay() {
     this.currentResultEl.innerText = this.currentResult;
     // console.log(this.currentResultEl.innerText);
+
     this.previousResultEl.innerText = this.previousResult;
+
+    // if (this.operation !== null) {
+    // this.previousResultEl.innerText = `${this.previousResult} ${this.operation}`;
+
+    // }
   }
 }
 
@@ -76,7 +83,7 @@ const operationBtn = document.querySelectorAll("#operation-btn");
 const allClearBtn = document.querySelector("#all-clear");
 const deleteBtn = document.querySelector("#delete-btn");
 const computeBtn = document.querySelector("#compute-btn");
-const previousResultEl = document.querySelector("#previousresult");
+const previousResultEl = document.querySelector(".Prev-result");
 const currentResultEl = document.querySelector("#currentresult");
 
 const claculator = new Claculator(previousResultEl, currentResultEl);
@@ -89,18 +96,18 @@ numberBtn.forEach((button) => {
   });
 });
 
-allClearBtn.addEventListener("click", () => {
-  claculator.clear();
-  claculator.updateDisplay();
-  // console.log(button.innerText);
-});
-
 operationBtn.forEach((button) => {
   button.addEventListener("click", () => {
     claculator.choseOperation(button.innerText);
     claculator.updateDisplay();
     // console.log(button.innerText);
   });
+});
+
+allClearBtn.addEventListener("click", () => {
+  claculator.clear();
+  claculator.updateDisplay();
+  // console.log(button.innerText);
 });
 
 computeBtn.addEventListener("click", () => {
